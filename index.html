@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+  <link href="styles.css" rel="stylesheet">
+  <title>Event Planer</title>
+</head>
+<body class="text-center">
+  <div id='login-page' class="container-fluid view" style="background-image: url('./jakarta.svg'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
+    <br><br>
+    <img class="rounded-circle" src="https://st2.depositphotos.com/1006318/5909/v/600/depositphotos_59095205-stock-illustration-businessman-profile-icon.jpg" alt="" width="100" height="100"><br>
+    <br>
+    <form class="form-signin custom-form" action="/login" method="POST" id="login-form">
+      <h1 class="h3 mb-3 font-weight-normal" style="color:white">Login</h1>
+      <label for="email" class="sr-only">Email address</label>
+      <input type="email" id="email" class="form-control" placeholder="Email address" required autofocus>
+      <label for="password" class="sr-only">Password</label>
+      <input type="password" id="password" class="form-control" placeholder="Password" required>
+      <button class="btn btn-lg btn-success btn-inline" style="width:49%" type="submit">Login</button>
+      <button class="btn btn-lg btn-secondary btn-inline" style="width:49%"type="button" id='register-redirect'>Register</button>
+      <p class="mt-3 mb-3  " style="color:white">&mdash; Or Login with &mdash; </p>
+      <button class="btn btn-lg btn-secondary btn-inline" type="button">Google.</button>
+    </form>
+    <p class="mt-5 mb-3 " style="color:white">Event Planner &copy; 2020</p>
+  </div>
+  <div id='register-page' class="container-fluid view" style="background-image: url('https://mdbootstrap.com/img/Photos/Others/architecture.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;"">
+    <br><br>
+    <form class="form-signin custom-form" action="/register" method="POST" id="register-form">
+      <img class="rounded-circle" src="https://st2.depositphotos.com/1006318/5909/v/600/depositphotos_59095205-stock-illustration-businessman-profile-icon.jpg" alt="" width="100" height="100">
+      <h1 class="h3 mb-3 font-weight-normal">Register</h1>
+      <label for="name" class="sr-only">Name</label>
+      <input type="text" id="name" class="form-control" placeholder="Name" required autofocus>
+      <label for="email" class="sr-only">Email address</label>
+      <input type="email" id="reg-email" class="form-control" placeholder="Email address" required autofocus>
+      <label for="password" class="sr-only">Password</label>
+      <input type="password" id="reg-password" class="form-control" placeholder="Password" required>
+      <button class="btn btn-lg btn-success btn-inline" style="width:49%" type="submit">Register</button>
+      <button class="btn btn-lg btn-secondary btn-inline" style="width:49%"type="button" id="login-redirect">Login</button>
+      <p class="mt-3 mb-3 text-muted ">&mdash; Or Login with &mdash; </p>
+      <button class="btn btn-lg btn-secondary btn-inline" type="button">Google.</button>
+      <p class="mt-5 mb-3 text-muted">Event Planner &copy; 2020</p>
+    </form>
+  </div>
+  <div id='main-page' class="container-fluid view" style="background-image: url('https://mdbootstrap.com/img/Photos/Others/architecture.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;"">
+    <div class="row">
+      <div id='profile-section' class="col-sm-6 col-md-3 fixed-bottom"><br>
+        <h2>Halo, ${User}</h2>
+        <p>user@mail.com<p>
+        <button class="btn btn-sm btn-danger btn-inline" id="logout-button" type="button">Logout</button>
+        <hr>
+        <!-- Sementara Kosong -->
+        <!-- <p><strong>Add todo:</strong></p>
+        <form class="" action="/todos" method="POST" id="add-todo-form">
+          <label for="todoName" class="sr-only">Name</label>
+          <input type="text" id="todo-name" class="form-control" placeholder="Name" required autofocus>
+          <textarea rows="2" cols="40" name="comment" id="description" form="add-todo-form" placeholder="Description"></textarea>
+          <label for="status" class="sr-only">Status:</label>
+          <select class="form-control" id="status">
+            <option selected disabled>&mdash; Select Status &mdash;</option>
+            <option>Listed</option>
+            <option>Doing</option>
+            <option>Done</option>
+            <option>Rescheduled</option>
+            <option>Expired</option>
+          </select><br>
+          <div style="text-align: left; font-weight: bolder">
+            <label for="category" id="category">Category:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+            <label class="radio-inline"><input type="radio" name="category" value="Personal">  Personal&nbsp;&nbsp;&nbsp;&nbsp;</label>
+            <label class="radio-inline"><input type="radio" name="category" value="Project">  Project</label>
+          </div>
+          <div style="text-align: left; font-weight: bolder">
+            <label for="due" >Due:</label>
+            <input type="date" id="due" class="form-control" name="due" placeholder="Due" required autofocus><br>
+          </div>
+          <button class="btn btn-lg btn-success btn-block" type="submit">Add</button>
+        </form> -->
+      </div>
+      <hr>
+      <div id='display-section' class="col-sm-6 col-md-9">
+        <h2>Man Page</h2>
+        <hr>
+        <div class="album py-5 bg-light">
+          <div class="container">
+            <div class="row" id="todos">
+            </div>
+          </div>
+        </div>
+        <p class="mt-5 mb-3 text-muted">Event Planner &copy; 2020</p>
+      </div>
+    </div>
+    <br>
+  </div>
+  
+  <!-- ***** SCRIPTS *****-->
+
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous">
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous">
+  </script>
+  <script src="./index.js"></script>
+
+</body>
+</html>
