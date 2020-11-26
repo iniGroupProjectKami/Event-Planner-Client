@@ -140,6 +140,34 @@ const getData=()=>{
 const logout=()=>{
   localStorage.clear()
   showLoginPage()
+  const auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut().then(function () {
+    console.log('User signed out.');
+  });
+}
+
+// ! google signin
+function onSignIn(googleUser) {
+  const google_token = googleUser.getAuthResponse().id_token;
+  const request = $.ajax({
+      url: "http://localhost:3000/google-login",
+      method: "POST",
+      data: {google_token}
+  });
+
+  request.done((message) => {
+      localStorage.setItem('access_token', message.access_token);
+      showMainPage()
+  })
+
+  request.fail((jqxhr, status) => {
+      console.log(jqxhr.responseJSON);
+  })
+
+  request.always(() => {
+      $("#email").val("")
+      $("#password").val("")
+  })
 }
 
 $(document).ready(function(){
