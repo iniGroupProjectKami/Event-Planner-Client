@@ -27,6 +27,8 @@ const login=()=>{
   })
   .done(response =>{
     localStorage.setItem('access_token', response.access_token)
+    $("#si-name").text(response.name)
+    $("#si-email").text(response.email)
     showMainPage()
   })
   .fail((xhr, textStatus)=>{
@@ -157,19 +159,19 @@ function onSignIn(googleUser) {
       data: {google_token}
   });
 
-  // request.done((message) => {
-  //     localStorage.setItem('access_token', message.access_token);
-  //     showMainPage()
-  // })
+  request.done((message) => {
+      localStorage.setItem('access_token', message.access_token);
+      showMainPage()
+  })
 
-  // request.fail((jqxhr, status) => {
-  //     console.log(jqxhr.responseJSON);
-  // })
+  request.fail((jqxhr, status) => {
+      console.log(jqxhr.responseJSON);
+  })
 
-  // request.always(() => {
-  //     $("#email").val("")
-  //     $("#password").val("")
-  // })
+  request.always(() => {
+      $("#email").val("")
+      $("#password").val("")
+  })
 }
 
 $(document).ready(function(){
