@@ -196,8 +196,10 @@ function onSignIn(googleUser) {
 
   request.done((message) => {
       localStorage.setItem('access_token', message.access_token);
-      // console.log(message)
-      $("#si-name").html(message.name)
+
+      console.log(message);
+      $("#si-name").text(message.name)
+
       $("#si-email").text(message.email)
       showMainPage()
   })
