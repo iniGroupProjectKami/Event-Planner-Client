@@ -110,7 +110,7 @@ const getData=()=>{
   .done(response =>{
     response.forEach(data => {
       console.log(data)
-      $("#todos").append(`
+      $("#datas").append(`
       <div class="col-md-4">
         <div class="card mb-4 shadow-sm ">
           <img src="https://www.targettraining.eu/wp-content/uploads/2019/02/meetings-practice.jpg" class="card-img-top" alt="...">
@@ -148,26 +148,28 @@ const logout=()=>{
 
 // ! google signin
 function onSignIn(googleUser) {
+
   const google_token = googleUser.getAuthResponse().id_token;
+
   const request = $.ajax({
       url: "http://localhost:3000/google-login",
       method: "POST",
       data: {google_token}
   });
 
-  request.done((message) => {
-      localStorage.setItem('access_token', message.access_token);
-      showMainPage()
-  })
+  // request.done((message) => {
+  //     localStorage.setItem('access_token', message.access_token);
+  //     showMainPage()
+  // })
 
-  request.fail((jqxhr, status) => {
-      console.log(jqxhr.responseJSON);
-  })
+  // request.fail((jqxhr, status) => {
+  //     console.log(jqxhr.responseJSON);
+  // })
 
-  request.always(() => {
-      $("#email").val("")
-      $("#password").val("")
-  })
+  // request.always(() => {
+  //     $("#email").val("")
+  //     $("#password").val("")
+  // })
 }
 
 $(document).ready(function(){
