@@ -12,6 +12,7 @@ const showMainPage=()=>{
   $('#register-page,#login-page').hide()
   $('#main-page').show()
   getData()
+  getWeather()
 }
 
 const login=()=>{
@@ -101,6 +102,40 @@ const register=()=>{
 //   })
 // }
 
+// ! show weather
+const getWeather = () => {
+  const request = $.ajax({
+    url: "http://localhost:3000/weathers",
+    method: "GET",
+    headers:{
+      access_token: localStorage.access_token
+    }
+  });
+   
+  request.done(function( msg ) {
+    $("#weather-location").text(msg.name)
+    let kelvin = msg.main.temp
+    const celcius = parseFloat(kelvin) - parseFloat(273.15)
+    $("#weather-temp").html(`${celcius.toFixed(2)} <span class="symbol">°</span>C`)
+    $("#weather-description").html(`<h3> ${msg.weather[0].main} <img src="http://openweathermap.org/img/wn/${msg.weather[0].icon}@2x.png" alt=""></h3>`)
+
+    const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    const d = new Date();
+    const dayName = days[d.getDay()];
+    $("#weather-day").text(dayName)
+
+
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    const getDate = new Date().toLocaleDateString(undefined, options)
+    $("#weather-date").text(getDate)
+  });
+   
+  request.fail(function( jqXHR, textStatus ) {
+    console.log(jqXHR, textStatus)
+  });
+}
+// ! end show weather
+
 const getData=()=>{
   $.ajax({
     url: "http://localhost:3000/museums",
@@ -161,6 +196,8 @@ function onSignIn(googleUser) {
 
   request.done((message) => {
       localStorage.setItem('access_token', message.access_token);
+      $("#si-name").text(response.name)
+      $("#si-email").text(response.email)
       showMainPage()
   })
 
