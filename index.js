@@ -13,6 +13,7 @@ const showMainPage=()=>{
   $('#main-page').show()
   getData()
   getWeather()
+  getHolidays()
 }
 
 const login=()=>{
@@ -101,6 +102,38 @@ const register=()=>{
 //     $("#due").val("")
 //   })
 // }
+
+// ! show holidays
+const getHolidays = () => {
+  const request = $.ajax({
+    url: "http://localhost:3000/holidays",
+    method: "GET",
+    headers:{
+      access_token: localStorage.access_token
+    }
+  });
+   
+  request.done(function( msg ) {
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    $("#holiday-section").empty()
+    for (let i = 0; i < msg.length; i++) {
+      const element = msg[i];
+      $("#holiday-section").append(`
+        <tr>
+          <td width="50%"><p>${element.name}</p></td>
+          <td><p>${new Date(element.date.iso).toLocaleDateString(undefined, options)}</p></td>
+        </tr>
+      `)
+    }
+    
+  });
+   
+  request.fail(function( jqXHR, textStatus ) {
+    console.log(jqXHR);
+    // console.log(jqXHR, textStatus)
+  });
+}
+// ! end holidays
 
 // ! show weather
 const getWeather = () => {
