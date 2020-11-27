@@ -183,7 +183,6 @@ const getData=()=>{
       $("#datas").append(`
       <div class="col-md-4">
         <div class="card mb-4 shadow-sm ">
-          <img src="https://www.targettraining.eu/wp-content/uploads/2019/02/meetings-practice.jpg" class="card-img-top" alt="...">
           <div class="card-body text-left">
             <h5 class="card-title">${data.nama_museum}</h5>
             <p class="card-subtitle mb-2 text-muted">${data.alamat}</p><hr>
